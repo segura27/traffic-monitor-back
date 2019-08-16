@@ -2,10 +2,14 @@ const mongoose = require("mongoose");
 
 mongoose.pluralize(null);
 
-mongoose.connect("mongodb://127.0.0.1:27017/traffic-monitor-api", {
+mongoose.connect("mongodb+srv://traffic-app:CoyMYwI0qL4KRsJG@cluster0-iwzcl.mongodb.net/test?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useCreateIndex: true
 });
+
+
+
+//CoyMYwI0qL4KRsJG
 
 // const test_device_registration1 = new device_metadata({
 //     device_id: 1,

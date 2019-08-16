@@ -24,7 +24,7 @@ app.post("/devices/register", (req, res) => {
     });
 });
 
-app.get("/", (req, res) => {
+app.get("/home", (req, res) => {
   res.json({ "message:": "Welcome!" });
 });
 
