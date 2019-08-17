@@ -3,7 +3,7 @@ require("./db/mongoose");
 
 const device_metadata = require("./models/device_metadata");
 const gate_metadata = require("./models/gate_metadata");
-const traffic_metadata = require("./models/traffic_data_metadata");
+const traffic_data_metadata = require("./models/traffic_data_metadata");
 
 const app = express();
 
@@ -20,7 +20,7 @@ app.post("/devices/register", (req, res) => {
       res.status(200).send(device);
     })
     .catch(e => {
-      res.status(400).send(e._message);
+      res.status(400).send(e)
     });
 });
 
@@ -47,6 +47,34 @@ app.get("/gates", (req, res) => {
     })
     .catch(e => {
       res.send(e);
+    });
+});
+
+
+app.get("/traffic", (req, res) => {
+  traffic_data_metadata
+    .find()
+    .then(traffic => {
+      res.send(traffic);
+    })
+    .catch(e => {
+      res.send(e);
+    });
+});
+
+
+app.post("/traffic/load", (req, res) => {
+  console.log(req.body);
+
+  const traffic = new traffic_data_metadata(req.body);
+
+  traffic
+    .save()
+    .then(() => {
+      res.status(200).send(traffic);
+    })
+    .catch(e => {
+      res.status(400).send(e)
     });
 });
 
